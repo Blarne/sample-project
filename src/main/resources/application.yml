@@ -1,0 +1,33 @@
+spring:
+#  devtools.restart.enabled=false
+  application:
+    name: demo
+    env: ${ENVIRONMENT:dev}
+  main:
+    log-startup-info: false
+    allow-bean-definition-overriding: true
+  profiles:
+    include: microservice
+  jackson:
+    serialization:
+      indent_output: true
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
+    mapper:
+      default-view-inclusion: true
+server:  
+  tomcat:
+#    max-threads: 50
+    min-spare-threads: 20
+  port: ${PORT:8080}
+azure:
+  application-insights:
+    enabled: true
+    web:
+      enabled: true
+    channel:
+      in-process:
+        developer-mode: true
+    instrumentation-key: ${INSIGHTS_INSTRUMENTATION_KEY:}  
